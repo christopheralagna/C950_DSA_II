@@ -12,7 +12,6 @@ class Package:
         self.weight = weight
         self.special_notes = special_notes
 
-        self.status = "At the Hub"
         self.departure_time = None
         self.delivery_time = None
         

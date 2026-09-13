@@ -1,0 +1,44 @@
+from truck import Truck
+from distances import get_distance
+from datetime import datetime, timedelta
+
+#find the package on the truck that has the shortest delivery time, move truck to that location, deliver the package, record time, repeat until all packages are delivered, return truck to hub
+def deliver_packages(truck: Truck, address_map: dict[str, int], distance_matrix: list[list[float]], current_time: datetime):
+    #loop until all packages are delivered
+    while truck.packages:
+    
+        shortest_distance = float('inf')
+        shortest_delivery_package = None
+        
+        #loop through all packages on the truck to find closest package
+        for package in truck.packages:
+            distance = get_distance(truck.current_location, package.address, address_map, distance_matrix)
+            if distance < shortest_distance:
+                shortest_distance = distance
+                shortest_delivery_package = package
+            
+        #calculate delivery travel time (hours to minutes)
+        delivery_minutes = (shortest_distance / truck.speed) * 60
+        current_time += timedelta(minutes=delivery_minutes)
+        truck.mileage += shortest_distance
+
+        #update package delivery info
+        truck.current_location = shortest_delivery_package.address
+        shortest_delivery_package.delivery_time = current_time
+        truck.packages.remove(shortest_delivery_package)
+
+        print(f"Truck {truck.truck_number} has delivered package {shortest_delivery_package.package_id} at {current_time} to {shortest_delivery_package.address}. Truck mileage: {truck.mileage:.2f}")
+
+    # Return truck to HUB
+    return_distance = get_distance(truck.current_location, "HUB", address_map, distance_matrix)
+    return_minutes = (return_distance / truck.speed) * 60
+    current_time += timedelta(minutes=return_minutes)
+    truck.mileage += return_distance
+    truck.current_location = "HUB"
+    return current_time
+    
+    
+        
+        
+    
+    
