@@ -1,13 +1,15 @@
 import csv
-from HashTable import HashTable
-from Package import Package
+from hash_table import HashTable
+from package import Package
 
+#loads package data from CSV into hash table
 def load_package_data(filename: str, hash_table: HashTable) -> None:
-    with open(filename, 'r') as file:
+    with open(filename, 'r', encoding='utf-8-sig') as file:
         reader = csv.reader(file)
 
         for row in reader:
-            if not row or row[0] == "Package ID":
+            #skip empty rows or header row
+            if not row or "Package ID" in row[0]:
                 continue
             
             package_id = int(row[0])
