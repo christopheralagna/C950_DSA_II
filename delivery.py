@@ -33,8 +33,6 @@ def deliver_packages(truck: Truck, address_map: dict[str, int], distance_matrix:
         shortest_delivery_package.delivery_time = current_time
         truck.packages.remove(shortest_delivery_package)
 
-        print(f"Truck {truck.truck_number} has delivered package {shortest_delivery_package.package_id} at {current_time} to {shortest_delivery_package.address}. Truck mileage: {truck.mileage:.2f}")
-
     # Return truck to HUB
     return_distance = get_distance(truck.current_location, "HUB", address_map, distance_matrix)
     return_minutes = (return_distance / truck.speed) * 60

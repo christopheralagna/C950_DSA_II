@@ -25,7 +25,7 @@ class HashTable:
         if package.package_id in [3, 18, 36, 38]:
             package.special_notes = "Must be on truck 2"
         elif package.package_id in [6, 25, 28, 32]:
-            package.special_notes = "Must be on truck 3"
+            package.special_notes = "delayed on flight until 9:05 am"
         elif package.package_id == 14:
             package.special_notes = "Must be delivered with 15 and 19"
         elif package.package_id == 16:
