@@ -6,7 +6,13 @@ from datetime import datetime, timedelta
 def deliver_packages(truck: Truck, address_map: dict[str, int], distance_matrix: list[list[float]], current_time: datetime):
     #loop until all packages are delivered
     while truck.packages:
-    
+        #update address for package 9 if current_time is at or after 10:20 am
+        if current_time >= timedelta(hours=10, minutes=20):
+            for package in truck.packages:
+                if package.package_id == 9:
+                    package.address = "410 S State St"
+                    package.zip_code = "84111"
+
         shortest_distance = float('inf')
         shortest_delivery_package = None
         

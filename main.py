@@ -1,3 +1,7 @@
+# WGU C950 Project
+# Student ID: 012276101
+# Christopher Alagna
+
 from csv_reader import load_package_data, load_distance_data
 from hash_table import HashTable
 from distances import get_distance
