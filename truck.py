@@ -2,12 +2,13 @@ from hash_table import HashTable
 
 class Truck:
     
-    def __init__(self, truck_number):
+    def __init__(self, truck_number, current_time):
         self.truck_number = truck_number
         self.packages = []
         self.mileage = 0.0
         self.current_location = "HUB"
         self.speed = 18.0
+        self.departure_time = current_time
 
     #package lists for each truck. Ensured that all special instructions are factored into delivery.
     #packages 3, 18, 36, 38 must be on truck 2
